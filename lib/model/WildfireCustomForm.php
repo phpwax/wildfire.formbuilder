@@ -12,7 +12,7 @@ class WildfireCustomForm extends WaxModel{
     $this->define("date_created", "DateTimeField", array('editable'=>false, 'scaffold'=>true));
     $this->define("date_modified", "DateTimeField", array('editable'=>false));
     
-    $this->define("fields", "HasManyField", array('target_model'=>'WildfireCustomField', 'group'=>'Fields', 'editable'=>true));
+    $this->define("fields", "HasManyField", array('scaffold'=>true, 'target_model'=>'WildfireCustomField', 'group'=>'Fields', 'editable'=>true));
   }
   
   public function before_save(){
