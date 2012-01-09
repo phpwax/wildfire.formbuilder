@@ -18,6 +18,8 @@ class WildfireCustomForm extends WaxModel{
   public function before_save(){
     if(!$this->title) $this->title = "FORM NAME";
     if(!$this->prefix) $this->prefix = $this->get_prefix();
+    if(!$this->date_created) $this->date_created = date("Y-m-d H:i:s");
+    $this->date_modified = date("Y-m-d H:i:s");
   }
   
   public function get_prefix($test=false){
