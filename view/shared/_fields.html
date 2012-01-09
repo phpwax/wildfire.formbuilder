@@ -10,7 +10,8 @@
         $mini_form = new WaxForm($row);
         ?>
       <li class='clearfix join-option'>
-        <input type='hidden' id="<?=$name?>_<?=$row->primval?>_join_order" name='joins[<?=$name?>][<?=$row->primval?>][<?=$row->primary_key?>]' value="0">
+        <input type='hidden' id="<?=$name?>_<?=$row->primval?>_hidden" name='joins[<?=$name?>][<?=$row->primval?>][<?=$row->primary_key?>]' value="0">
+        
         <span class='cf checkbox'><input type='checkbox' id="<?=$name?>_<?=$row->primval?>" name='joins[<?=$name?>][<?=$row->primval?>][<?=$row->primary_key?>]' value="<?=$row->primval?>" checked="checked"></span>
         <input type="hidden" name="fields[<?=$i?>][primval]" value="<?=$row->primval?>">
         <span class='cf title'><?=$mini_form->title->render(array('placeholder'=>'title'));?></span>
