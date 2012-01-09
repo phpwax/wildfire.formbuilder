@@ -6,7 +6,7 @@ class WildfireCustomField extends WaxModel{
     $this->define("title", "CharField", array('required'=>true));
     
     $this->define("choices", "TextField"); //only for dropdowns & radio buttons
-    $this->define("required", "BooleanField");
+    $this->define("required", "BooleanField", array('choices'=>array('Optional', 'Required')));
     
     $this->define("column_name", "CharField", array('editable'=>false, 'unique'=>true));
     $this->define("form", "ForeignKey", array('target_model'=>'WildfireCustomForm'));
