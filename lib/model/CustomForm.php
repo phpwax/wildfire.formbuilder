@@ -22,7 +22,7 @@ class CustomForm extends WaxModel{
   public function get_prefix($test=false){
     if(!$test) $test = substr(Inflections::to_url($this->title),0,5);
     $model = new CustomForm;
-    if($model->first("prefix", $test)->first()) return $this->get_prefix($test.rand(1000,9999));
+    if($model->filter("prefix", $test)->first()) return $this->get_prefix($test.rand(1000,9999));
     else return $test;
   }
 }

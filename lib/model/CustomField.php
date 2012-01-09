@@ -24,7 +24,7 @@ class CustomField extends WaxModel{
   public function get_column_name($test=false){
     if(!$test) $test = substr(Inflections::to_url($this->title),0,5);
     $model = new CustomField;
-    if($model->first("column_name", $test)->first()) return $this->get_prefix($test.rand(1000,9999));
+    if($model->filter("column_name", $test)->first()) return $this->get_prefix($test.rand(1000,9999));
     else return $test;
   }
   
