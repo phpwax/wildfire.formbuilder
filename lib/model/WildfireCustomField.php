@@ -20,7 +20,7 @@ class WildfireCustomField extends WaxModel{
   }
   
   public function field_types(){
-    return array(''=>'-- Select --', 'TextInput'=>'Text field', 'TextareaInput'=>'Message Field', 'CheckboxInput'=>'Check box', 'RadioInput'=>'Radio button', 'SelectInput'=>'Drop down list');
+    return array(''=>'-- Select field type --', 'TextInput'=>'Text field', 'TextareaInput'=>'Message Field', 'CheckboxInput'=>'Check box', 'RadioInput'=>'Radio button', 'SelectInput'=>'Drop down list');
   }
   
   public function get_column_name($test=false){
