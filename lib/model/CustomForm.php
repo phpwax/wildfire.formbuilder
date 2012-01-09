@@ -5,9 +5,9 @@ class CustomForm extends WaxModel{
     $this->define("title", "CharField", array('required'=>true, 'scaffold'=>true));
     $this->define("content", "TextField", array('widget'=>"TinymceTextareaInput"));
     $this->define("terms_and_conditions", "TextField", array('widget'=>"TinymceTextareaInput"));
+    $this->define("redirect_to_after_save", "CharField");
 
-
-    $this->define("prefix", "Charfield", array('editable'=>false, 'unique'=>true));
+    $this->define("prefix", "CharField", array('editable'=>false, 'unique'=>true));
 
     $this->define("date_created", "DateTimeField", array('editable'=>false, 'scaffold'=>true));
     $this->define("date_modified", "DateTimeField", array('editable'=>false));
