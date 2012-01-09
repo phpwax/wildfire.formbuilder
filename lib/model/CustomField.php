@@ -6,7 +6,6 @@ class CustomField extends WaxModel{
     $this->define("title", "CharField", array('required'=>true));
     
     $this->define("choices", "TextField"); //only for dropdowns & radio buttons
-    $this->define("value", "CharField"); //only for check boxes
     $this->define("required", "BooleanField");
     
     $this->define("column_name", "CharField", array('editable'=>false, 'unique'=>true));
