@@ -1,5 +1,5 @@
 <?
-class DynamicForm extends WaxModel{
+class WildfireDynamicForm extends WaxModel{
   
   public static $form;
   

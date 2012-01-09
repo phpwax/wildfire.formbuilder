@@ -3,17 +3,19 @@ class WildfireFormbuilderController extends WaxController{
   
   public $custom_form = false;
   public $custom_form_model = false;
-  public $form_model_class = "DynamicForm";
+  public $form_class = "WildfireCustomForm";
+  public $form_model_class = "WildfireDynamicForm";
   //from a single form id, generate the model by using the dynamic form model and then use form render
   public function __custom(){
-    $f_class = $this->form_model_class;
-    if($this->form_primval && ($custom_form = new CustomForm($this->form_primval))){
-      $f_class::$form = $this->custom_form_model = $custom_form; //copy to this var so we can access the content / t&cs etc
+    $fm_class = $this->form_model_class;
+    $f_class = $this->form_class;
+    if($this->form_primval && ($custom_form = new $f_class($this->form_primval))){
+      $fm_class::$form = $this->custom_form_model = $custom_form; //copy to this var so we can access the content / t&cs etc
       
  
       //clear and create the event to hook in to the model setup
-      if(!$_POST) WaxEvent::clear($f_class.".setup");
-      WaxEvent::add($f_class.".setup", function(){
+      if(!$_POST) WaxEvent::clear($fm_class.".setup");
+      WaxEvent::add($fm_class.".setup", function(){
         $obj = WaxEvent::data(); //the model
         $form = $obj::$form;
         //now we loop over the fields and add them to the model
@@ -28,7 +30,7 @@ class WildfireFormbuilderController extends WaxController{
         }
       });
       
-      $db = new $f_class;
+      $db = new $fm_class;
       $this->custom_form = new WaxForm($db);
       if($saved = $this->custom_form->save()){
         $this->redirect_to($custom_form->redirect_to_after_save."?s=".$saved->primval);

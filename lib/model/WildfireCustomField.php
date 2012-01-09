@@ -1,5 +1,5 @@
 <?
-class CustomField extends WaxModel{
+class WildfireCustomField extends WaxModel{
   
   public function setup(){
     $this->define("field_type", "CharField", array('required'=>true, 'widget'=>'SelectInput', 'choices'=>$this->field_types() ));
@@ -9,7 +9,7 @@ class CustomField extends WaxModel{
     $this->define("required", "BooleanField");
     
     $this->define("column_name", "CharField", array('editable'=>false, 'unique'=>true));
-    $this->define("form", "ForeignKey", array('target_model'=>'CustomForm'));
+    $this->define("form", "ForeignKey", array('target_model'=>'WildfireCustomForm'));
   }
   
   public function before_save(){

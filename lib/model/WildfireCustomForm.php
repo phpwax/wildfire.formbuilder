@@ -1,5 +1,5 @@
 <?
-class CustomForm extends WaxModel{
+class WildfireCustomForm extends WaxModel{
 
   public function setup(){
     $this->define("title", "CharField", array('required'=>true, 'scaffold'=>true));
@@ -12,7 +12,7 @@ class CustomForm extends WaxModel{
     $this->define("date_created", "DateTimeField", array('editable'=>false, 'scaffold'=>true));
     $this->define("date_modified", "DateTimeField", array('editable'=>false));
     
-    $this->define("fields", "HasManyField", array('target_model'=>'CustomField', 'group'=>'Fields'));
+    $this->define("fields", "HasManyField", array('target_model'=>'WildfireCustomField', 'group'=>'Fields'));
   }
   
   public function before_save(){
