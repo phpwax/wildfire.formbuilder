@@ -23,7 +23,7 @@ class WildfireFormbuilderController extends WaxController{
           $choices = array();
           if($field->choices){
             $c = explode("\n", $field->choices);
-            foreach($c as $v) $choices[$v] = $v;
+            foreach($c as $v) $choices[trim($v)] = trim($v);
           }
           $options = array('widget'=>$field->field_type, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices);          
           $obj->define($field->column_name, "CharField", $options);
