@@ -1,0 +1,3 @@
+<?
+class FormController extends WildfireFormbuilderController{}
+?>
