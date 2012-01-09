@@ -11,7 +11,9 @@ class WildfireCustomField extends WaxModel{
     $this->define("required", "BooleanField", array('choices'=>array('Optional', 'Required')));
     
     $this->define("column_name", "CharField", array('editable'=>false, 'unique'=>true));
-    $this->define("form", "ForeignKey", array('target_model'=>'WildfireCustomForm'));
+    $this->define("form", "ForeignKey", array('target_model'=>'WildfireCustomForm', 'scaffold'=>true));
+    
+    $this->define("order", "IntegerField", array('editable'=>false));
   }
   
   public function before_save(){
@@ -20,7 +22,7 @@ class WildfireCustomField extends WaxModel{
   }
   
   public function field_types(){
-    return array(''=>'-- Select field type --', 'TextInput'=>'Text field', 'TextareaInput'=>'Message Field', 'CheckboxInput'=>'Check box', 'RadioInput'=>'Radio button', 'SelectInput'=>'Drop down list');
+    return array(''=>'-- Select field type --', 'TextInput'=>'Text field', 'TextareaInput'=>'Message Field', 'CheckboxInput'=>'Check box', 'RadioInput'=>'Radio button', 'SelectInput'=>'Drop down list', 'FileInput'=>'File Upload', 'DateInput'=>'Date Picker');
   }
   
   public function get_column_name($test=false){
