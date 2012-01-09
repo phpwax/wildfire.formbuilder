@@ -1,0 +1,22 @@
+.existing_field span.cf{
+  width:28%;
+  margin-left:1%;
+  float:left;
+  margin-bottom:5px;
+  display:block;
+}
+.existing_field li{
+  border-bottom:1px solid black;
+  padding:5px 0;
+  margin-bottom:0;
+}
+.existing_field span.checkbox{
+  width:2%;
+  padding-top:10px;
+}
+.existing_field label{display:none;}
+.existing_field span.choices{display:none; clear:both; width:90%; margin:0 auto 5px 10px;}
+
+.existing_field span.choices_forced, .existing_field span.choices_forced label{display:block;}
+.existing_field span.choices_forced label{margin-left:0;margin-bottom:5px;}
+.existing_field span.title input{width:92%;}
