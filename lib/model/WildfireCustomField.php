@@ -13,6 +13,7 @@ class WildfireCustomField extends WaxModel{
   }
   
   public function before_save(){
+    if(!$this->title) $this->title = "Field";
     if(!$this->column_name) $this->column_name = $this->get_column_name();
   }
   
