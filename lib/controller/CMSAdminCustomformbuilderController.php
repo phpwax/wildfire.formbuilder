@@ -11,17 +11,19 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
     WaxEvent::add("cms.joins.handle", function(){
       $obj = WaxEvent::data();
 	    $saved = $obj->model;
-	    $saved->fields->unset($model->fields); //clear the joins every save	    
 	    //handle new fields
 	    foreach(Request::param('new_field') as $field){
 	      $model = new WildfireCustomField;
         if($s = $model->update_attributes($field)) $saved->fields = $s;
 	    }
+	    $joins = Request::param('joins');
+	    $fjoins = $joins['fields'];
 	    //handle existing joins
 	    foreach(Request::param('fields') as $field){
 	      $model = new WildfireCustomField($field['primval']);
 	      unset($field['primval']);
-	      if($s = $model->update_attributes($field)) $saved->fields = $s;
+	      if($fjoins[$model->primval][$model->primary_key] && ($s = $model->update_attributes($field))) $saved->fields = $s;
+	      else $model->update_attributes(array($saved->table."_".$saved->primary_key=>0));
 	    }
     });
   }
