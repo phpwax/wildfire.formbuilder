@@ -1,0 +1,31 @@
+<div class='joins joins_<?=count($fields)?> clearfix'>
+  <div class='existing_fields clearfix' id="custom_form_existing_field">
+    <div class='field clearfix multipleselect' data-type="multipleselect" data-origin-class="<?=$model_class?>" data-origin-primval="<?=$model->primval?>" data-destination-class="<?=$join_class?>">
+    <h3>Existing fields</h3>
+    <ul class='existing_field'>
+      <?foreach($model->fields as $row):?>
+      <li class='clearfix join-option join-yes'>
+        <input type='hidden' id="<?=$name?>_<?=$row->primval?>_join_order" name='joins[<?=$name?>][<?=$row->primval?>][<?=$row->primary_key?>]' value="0">
+        <input type='checkbox' id="<?=$name?>_<?=$row->primval?>" name='joins[<?=$name?>][<?=$row->primval?>][<?=$row->primary_key?>]' value="<?=$row->primval?>" <?=$row_is_joined?'checked="checked"':''?>>
+
+        <label for="<?=$name?>_<?=$row->primval?>"><?=$row->humanize()?></label>
+      </li>
+      <?endforeach?>
+    </ul>
+    <a href="#custom_form_existing_field" id="add_custom_form_field" class='preview button preview-button'>+ Add New Field</a>
+    </div>
+    <div class='hidden newfield'>
+      <?
+      $tmp = new WildfireCustomField;
+      $tmp->table = "new_field";
+      $mini_form = new WaxForm($tmp);
+      ?>      
+      <div class='clearfix join-option join-yes cloneme'>
+        <span class='field_type'><?=$mini_form->field_type->render();?></span>
+        <span class='title'><?=$mini_form->title->render();?></span>        
+        <span class='required'><?=$mini_form->required->render();?></span>
+        <span class='choices'><?=$mini_form->choices->render();?></span>
+      </div>
+    </div>
+  </div>
+</div>
