@@ -1,6 +1,8 @@
 <?
 class WildfireCustomField extends WaxModel{
   
+  public $identifier = "title";
+  
   public function setup(){
     $this->define("field_type", "CharField", array('required'=>true, 'widget'=>'SelectInput', 'choices'=>$this->field_types() ));
     $this->define("title", "CharField", array('required'=>true));
