@@ -1,0 +1,23 @@
+Needs DynamicContent
+
+Form builder:
+
+  Form object
+    - title
+    - prefix (so table name etc)
+    - content
+    - terms_and_conditions
+    - fields
+    
+    Field object
+      - type (text / checkbox / radio / textarea / select)
+      - grouping (hidden value to join multiple radios together etc)
+
+      - title (label)
+      
+      - choices (new line separated options - for select only)
+      
+      - value (for radio / checkboxes)
+      
+      - required field
+      
