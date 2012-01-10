@@ -4,7 +4,6 @@ jQuery(document).ready(function(){
     update:function(e,ui){
       var obj = jQuery(this), 
           parent = obj.parent(), 
-          ordering = {}, 
           items = parent.find("li"),
           lic=0
           ;
