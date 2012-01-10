@@ -19,7 +19,7 @@ class WildfireFormbuilderController extends WaxController{
         $obj = WaxEvent::data(); //the model
         $form = $obj::$form;
         //now we loop over the fields and add them to the model
-        foreach($form->fields as $field){
+        foreach($form->fields->scope("live")->all() as $field){
           $choices = array();
           if($field->choices){
             $c = explode("\n", $field->choices);
