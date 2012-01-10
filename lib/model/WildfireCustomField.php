@@ -13,7 +13,11 @@ class WildfireCustomField extends WaxModel{
     $this->define("column_name", "CharField", array('editable'=>false, 'unique'=>true));
     $this->define("form", "ForeignKey", array('target_model'=>'WildfireCustomForm', 'scaffold'=>true));
     
-    $this->define("order", "IntegerField", array('editable'=>false));
+    $this->define("order", "IntegerField", array('widget'=>'HiddenInput'));
+  }
+  
+  public function scope_live(){
+    return $this->order("`order` ASC");
   }
   
   public function before_save(){
