@@ -10,24 +10,32 @@ $counter = $custom_form_fields->count();
     <form action="" method="post" class='waxform' enctype="multipart/form-data">
       <?$i=0?>
       <?foreach($custom_form as $col=>$field):?>
-        <?if($fg = $field->bound_data->fg) $form_group = $fg;?>
-          <!-- I:<?=$i?> T: <?=$counter?> C:<?=$col?>-->
-        <?if($i == 0 || $form_group != $previous_group):?>
-          <?if($i != 0):?></fieldset><?endif?>
-          <fieldset class='clearfix'>
-          <?if($form_group):?><h3 class='form_header'><?=$form_group?></h3><?endif?>
-        <?endif?>
+        <?if($col):?>
+          <?if($fg = $field->bound_data->fg) $form_group = $fg;?>
+
+          <?if($i == 0 || $form_group != $previous_group):?>
+            <?if($i != 0):?></fieldset><?endif?>
+            <fieldset class='clearfix'>
+            <?if($form_group):?><h3 class='form_header'><?=$form_group?></h3><?endif?>
+          <?endif?>
+          <?$fclass = strtolower(get_class($field));?>
+          <?if($fclass == "titleinput"):?>
+          <h4><?=$field->label?></h4>
+          <?else:?>
         
-        <span class='wax_form_field'><?=$field->render();?></span>
+          <span class='wax_form_field <?=$fclass?> <?=$fclass.$col?>'>
+          <?=$field->render();?>
+          </span>
+          <?endif?>
+          <?if(($i+1) == $counter):?>
+          </fieldset>
+          <?endif?>
         
-        <?if(($i+1) == $counter):?>
-        </fieldset>
-        <?endif?>
-        
-        <?$previous_group = $form_group;?>
-        <?$i++;?>
-        
+          <?$previous_group = $form_group;?>
+          <?$i++;?>
+        <?endif?>  
       <?endforeach?>
+      <fieldset class='clearfix submit'><input type="submit" class='submit_button button submit_input' value='Submit'></fieldset>
     </form>
   </div>
   <div id="terms_and_conditions_<?=$custom_form_model->primval?>" class='form_terms_and_conditions'>
