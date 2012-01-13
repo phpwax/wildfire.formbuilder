@@ -27,8 +27,7 @@ class WildfireFormbuilderController extends WaxController{
           if($field->subtext) $field->title .= "<br><span class='subtext'>".$field->subtext."</span>";
           //set the group
           $group = $field->field_group;
-          //set title (& label) to false if the group is set and it matches the previous group (ie it should be treated like a set)
-          if($group && $group == $previous_group) $field->title = false; 
+          
           
           if($field->choices){
             $c = explode("\n", $field->choices);
