@@ -1,3 +1,8 @@
+Use:
+<?=partial("X/__custom", array('form_primval'=>1))?>
+
+X is name of the extended controller, form by default
+
 
 Form builder:
 
