@@ -12,6 +12,7 @@ class WildfireCustomField extends WaxModel{
     
     $this->define("subtext", "CharField");
     $this->define("field_group", "CharField");
+    $this->define("extra_class", "CharField", array('widget'=>'SelectInput', 'choices'=>array(''=>'Normal', 'small'=>'small', 'large'=>'large')));
     
     $this->define("column_name", "CharField", array('editable'=>false, 'unique'=>true));
     $this->define("form", "ForeignKey", array('target_model'=>'WildfireCustomForm', 'scaffold'=>true));

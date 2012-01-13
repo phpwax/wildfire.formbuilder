@@ -5,6 +5,7 @@
   margin-bottom:5px;
   display:block;
 }
+.existing_field span.extra_class{width:8%;}
 .existing_field li{
   border-bottom:1px solid black;
   padding:5px 0;

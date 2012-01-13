@@ -20,20 +20,19 @@ $counter = $custom_form_fields->count();
           <?endif?>
           <?$fclass = strtolower(get_class($field));?>
           <?if($fclass == "titleinput"):?>
-          <h4><?=$field->label?></h4>
+            <h4><?=$field->label?></h4>
           <?else:?>
-        
-          <span class='wax_form_field <?=$fclass?> <?=$fclass.$col?>'>
-          <?=$field->render();?>
-          </span>
+            <span class='wax_form_field <?=$fclass?> <?=$fclass.$col?> wax-field-<?=($field->bound_data->extra_class)?>'>
+              <?=$field->render();?>
+            </span>
           <?endif?>
           <?if(($i+1) == $counter):?>
           </fieldset>
           <?endif?>
-        
+
           <?$previous_group = $form_group;?>
           <?$i++;?>
-        <?endif?>  
+        <?endif?>
       <?endforeach?>
       <fieldset class='clearfix submit'><input type="submit" class='submit_button button submit_input' value='Submit'></fieldset>
     </form>
