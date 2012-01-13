@@ -28,7 +28,7 @@ class WildfireCustomField extends WaxModel{
   }
   
   public function field_types(){
-    return array(''=>'-- Select field type --', 'TextInput'=>'Text field', 'TextareaInput'=>'Message Field', 'CheckboxInput'=>'Check box', 'RadioInput'=>'Radio button', 'SelectInput'=>'Drop down list', 'FileInput'=>'File Upload', 'DateInput'=>'Date Picker', 'HiddenInput'=>'Hidden Field');
+    return array(''=>'-- Select field type --', 'TitleInput'=>'Title field', 'TextInput'=>'Text field', 'TextareaInput'=>'Message Field', 'CheckboxInput'=>'Check box', 'RadioInput'=>'Radio button', 'SelectInput'=>'Drop down list', 'FileInput'=>'File Upload', 'DateInput'=>'Date Picker', 'HiddenInput'=>'Hidden Field');
   }
   //
   public function get_column_name($test=false){
