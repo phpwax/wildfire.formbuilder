@@ -18,13 +18,20 @@ class WildfireFormbuilderController extends WaxController{
       WaxEvent::add($fm_class.".setup", function(){
         $obj = WaxEvent::data(); //the model
         $form = $obj::$form;
+        $previous_group = $group = false;
         //now we loop over the fields and add them to the model
         foreach($form->fields->scope("live")->all() as $field){
           $choices = array();
+          //set the group
+          $group = $field->field_group;
+          //set title (& label) to false if the group is set and it matches the previous group (ie it should be treated like a set)
+          if($group && $group == $previous_group) $field->title = false; 
+          
           if($field->choices){
             $c = explode("\n", $field->choices);
             foreach($c as $v) $choices[trim($v)] = trim($v);
           }
+          $previous_group = $group;
           $options = array('widget'=>$field->field_type, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices);          
           $obj->define($field->column_name, "CharField", $options);
         }

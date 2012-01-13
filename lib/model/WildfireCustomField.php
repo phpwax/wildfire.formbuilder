@@ -19,7 +19,7 @@ class WildfireCustomField extends WaxModel{
   }
   
   public function scope_live(){
-    return $this->order("`order` ASC");
+    return $this->order("`order` ASC, `field_group` ASC");
   }
   
   public function before_save(){
@@ -30,7 +30,7 @@ class WildfireCustomField extends WaxModel{
   public function field_types(){
     return array(''=>'-- Select field type --', 'TextInput'=>'Text field', 'TextareaInput'=>'Message Field', 'CheckboxInput'=>'Check box', 'RadioInput'=>'Radio button', 'SelectInput'=>'Drop down list', 'FileInput'=>'File Upload', 'DateInput'=>'Date Picker');
   }
-  
+  //
   public function get_column_name($test=false){
     if(!$test) $test = substr(Inflections::underscore($this->title),0,5);
     $model = new WildfireCustomField;
