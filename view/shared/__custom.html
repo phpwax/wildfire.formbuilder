@@ -18,7 +18,7 @@ $counter = $custom_form_fields->count();
           <?if($form_group):?><h3 class='form_header'><?=$form_group?></h3><?endif?>
         <?endif?>
         
-        <?=$field->render();?>
+        <span class='wax_form_field'><?=$field->render();?></span>
         
         <?if(($i+1) == $counter):?>
         </fieldset>
