@@ -1,8 +1,34 @@
+<?
+$custom_form_fields = $custom_form_model->fields->scope("live")->all();
+$counter = $custom_form_fields->count();
+?>
 <div class='clearfix form_and_content_container'>
   <h3><?=$custom_form_model->title?></h3>
   <?=CmsTextFilter::filter("before_output", $custom_form_model->content)?>
   <div class='form_container clearfix'>
-    <?=$custom_form->render()?>
+    <?$previous_group = $form_group = false;?>
+    <form action="" method="post" class='waxform' enctype="multipart/form-data">
+      <?$i=0?>
+      <?foreach($custom_form as $col=>$field):?>
+        <?if($fg = $field->bound_data->fg) $form_group = $fg;?>
+          <!-- I:<?=$i?> T: <?=$counter?> C:<?=$col?>-->
+        <?if($i == 0 || $form_group != $previous_group):?>
+          <?if($i != 0):?></fieldset><?endif?>
+          <fieldset>
+          <?if($form_group):?><h3 class='form_header'><?=$form_group?></h3><?endif?>
+        <?endif?>
+        
+        <?=$field->render();?>
+        
+        <?if(($i+1) == $counter):?>
+        </fieldset>
+        <?endif?>
+        
+        <?$previous_group = $form_group;?>
+        <?$i++;?>
+        
+      <?endforeach?>
+    </form>
   </div>
   <div id="terms_and_conditions_<?=$custom_form_model->primval?>" class='form_terms_and_conditions'>
     <?=CmsTextFilter::filter("before_output", $custom_form_model->terms_and_conditions)?>

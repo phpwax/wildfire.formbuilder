@@ -2,6 +2,7 @@
 class WildfireDynamicForm extends WaxModel{
   
   public static $form;
+  public static $custom_form_fields=array();
   
   public function setup(){
      parent::setup();

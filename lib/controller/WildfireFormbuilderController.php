@@ -5,6 +5,7 @@ class WildfireFormbuilderController extends WaxController{
   public $custom_form_model = false;
   public $form_class = "WildfireCustomForm";
   public $form_model_class = "WildfireDynamicForm";
+  public $custom_form_fields = array();
   //from a single form id, generate the model by using the dynamic form model and then use form render
   public function __custom(){
     $fm_class = $this->form_model_class;
@@ -21,7 +22,9 @@ class WildfireFormbuilderController extends WaxController{
         $previous_group = $group = false;
         //now we loop over the fields and add them to the model
         foreach($form->fields->scope("live")->all() as $field){
+          $obj->custom_form_fields[] = $field;
           $choices = array();
+          if($field->subtext) $field->title .= "<br><span class='subtext'>".$field->subtext."</span>";
           //set the group
           $group = $field->field_group;
           //set title (& label) to false if the group is set and it matches the previous group (ie it should be treated like a set)
@@ -32,7 +35,7 @@ class WildfireFormbuilderController extends WaxController{
             foreach($c as $v) $choices[trim($v)] = trim($v);
           }
           $previous_group = $group;
-          $options = array('widget'=>$field->field_type, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices);          
+          $options = array('widget'=>$field->field_type, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices, 'fg'=>$field->field_group);          
           $obj->define($field->column_name, "CharField", $options);
         }
       });
