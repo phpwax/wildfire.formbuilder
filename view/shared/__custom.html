@@ -14,7 +14,7 @@ $counter = $custom_form_fields->count();
           <!-- I:<?=$i?> T: <?=$counter?> C:<?=$col?>-->
         <?if($i == 0 || $form_group != $previous_group):?>
           <?if($i != 0):?></fieldset><?endif?>
-          <fieldset>
+          <fieldset class='clearfix'>
           <?if($form_group):?><h3 class='form_header'><?=$form_group?></h3><?endif?>
         <?endif?>
         
