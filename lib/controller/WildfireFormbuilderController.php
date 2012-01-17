@@ -46,6 +46,9 @@ class WildfireFormbuilderController extends WaxController{
       
       $db = new $fm_class;
       $this->custom_form = new WaxForm($db);
+      //bot check functionality
+      if($this->bot_check()) $this->redirect_to($custom_form->redirect_to_after_save."?s=bot");
+
       if($saved = $this->custom_form->save()){
         if(($to = $custom_form->email_notification) && ($sender = new $this->email_notification_class)){
           $func = $this->email_notification_func;
@@ -57,6 +60,12 @@ class WildfireFormbuilderController extends WaxController{
       }
     }
 
+  }
+
+  protected function bot_check(){
+    $posted = Request::param('check-in');
+    if(count($posted)) return true;
+    else return false;
   }
   
 }
