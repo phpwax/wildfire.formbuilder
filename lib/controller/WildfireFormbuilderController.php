@@ -6,6 +6,11 @@ class WildfireFormbuilderController extends WaxController{
   public $form_class = "WildfireCustomForm";
   public $form_model_class = "WildfireDynamicForm";
   public $custom_form_fields = array();
+
+  public $email_notification_class = "Notification";
+  public $email_notification_func = "submission";
+  public $email_subject = false;
+  public $dev_emails = array();
   //from a single form id, generate the model by using the dynamic form model and then use form render
   public function __custom(){
     $fm_class = $this->form_model_class;
@@ -42,6 +47,12 @@ class WildfireFormbuilderController extends WaxController{
       $db = new $fm_class;
       $this->custom_form = new WaxForm($db);
       if($saved = $this->custom_form->save()){
+        if(($to = $custom_form->email_notification) && ($sender = new $this->email_notification_class)){
+          $func = $this->email_notification_func;
+          if($this->email_subject && $this->dev_emails) $sender->$func($saved, $to, $this->email_subject, $this->dev_emails); 
+          elseif($this->email_subject) $sender->$func($saved, $to, $this->email_subject); 
+          else $sender->$func($saved, $to);
+        }
         $this->redirect_to($custom_form->redirect_to_after_save."?s=".$saved->primval);
       }
     }
