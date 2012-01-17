@@ -64,7 +64,7 @@ class WildfireFormbuilderController extends WaxController{
 
   protected function bot_check(){
     $posted = Request::param('check-in');
-    if(count($posted)) return true;
+    if(($v = array_shift($posted)) && $v) return true;
     else return false;
   }
   
