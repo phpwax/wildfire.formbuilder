@@ -12,7 +12,7 @@ class WildfireCustomForm extends WaxModel{
 
     $this->define("date_created", "DateTimeField", array('editable'=>false, 'scaffold'=>true));
     $this->define("date_modified", "DateTimeField", array('editable'=>false));
-    
+    $this->define("pages", "ManyToManyField", array('target_model'=>CONTENT_MODEL, 'group'=>'relationships'));
     $this->define("fields", "HasManyField", array('scaffold'=>true, 'target_model'=>'WildfireCustomField', 'group'=>'Fields', 'editable'=>true));
   }
   
