@@ -8,6 +8,11 @@ $counter = $custom_form_fields->count();
   <div class='form_container clearfix'>
     <?$previous_group = $form_group = false;?>
     <form action="" method="post" class='waxform' enctype="multipart/form-data">
+      <?#this field is used as a bot check on the form and will be hidden via js?>
+      <fieldset class='check-in'>
+        <label for='check-in'>Check in</label>
+        <input type="text" class='input_field text_field' name='check-in[<?=date("Y-m-d")?>]' id="check-in" value="">
+      </fieldset>
       <?$i=0?>
       <?foreach($custom_form as $col=>$field):?>
         <?if($col):?>
