@@ -1,6 +1,7 @@
 <?
 $custom_form_fields = $custom_form_model->fields->scope("live")->all();
 $counter = $custom_form_fields->count();
+$custom_form->form->value = $form_primval;
 ?>
 <div class='clearfix form_and_content_container'>
   <h3><?=$custom_form_model->title?></h3>
