@@ -4,6 +4,7 @@ class WildfireCustomForm extends WaxModel{
   public function setup(){
     $this->define("title", "CharField", array('required'=>true, 'scaffold'=>true));
     $this->define("content", "TextField", array('widget'=>"TinymceTextareaInput"));
+    $this->define("type", "CharField");
     $this->define("terms_and_conditions", "TextField", array('widget'=>"TinymceTextareaInput"));
     $this->define("redirect_to_after_save", "CharField");
     $this->define("email_notification", "EmailField", array('label'=>'Send email to'));
