@@ -28,7 +28,7 @@ $custom_form->form->value = $form_primval;
           <?if($fclass == "titleinput"):?>
             <h4><?=$field->label?></h4>
           <?else:?>
-            <span class='wax_form_field <?=$fclass?> <?=$fclass.$col?> wax-field-<?=($field->bound_data->extra_class)?>'>
+            <span class='clearfix wax_form_field <?=$fclass?> <?=$fclass.$col?> wax-field-<?=($field->bound_data->extra_class)?>'>
               <?=$field->render();?>
             </span>
           <?endif?>
