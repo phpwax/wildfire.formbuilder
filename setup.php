@@ -1,5 +1,5 @@
 <?
-CMSApplication::register_module("customformbuilder", array("display_name"=>"Form Builder", "link"=>"/admin/customformbuilder/", 'split'=>true));
+CMSApplication::register_module("customformbuilder", array('include_in_cms'=>true, "display_name"=>"Form Builder", "link"=>"/admin/customformbuilder/", 'split'=>true));
 
 if(!defined("CONTENT_MODEL")){
   $con = new ApplicationController(false, false);
