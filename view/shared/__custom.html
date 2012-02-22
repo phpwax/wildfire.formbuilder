@@ -43,7 +43,9 @@ $custom_form->form->value = $form_primval;
       <fieldset class='clearfix submit'><input type="submit" class='submit_button button submit_input' value='Submit'></fieldset>
     </form>
   </div>
+ <?if($custom_form_model->terms_and_conditions):?>
   <div id="terms_and_conditions_<?=$custom_form_model->primval?>" class='form_terms_and_conditions'>
     <?=CmsTextFilter::filter("before_output", $custom_form_model->terms_and_conditions)?>
   </div>
+  <?endif?>
 </div>
