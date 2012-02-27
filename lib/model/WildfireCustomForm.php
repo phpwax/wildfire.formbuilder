@@ -22,6 +22,8 @@ class WildfireCustomForm extends WaxModel{
     if(!$this->prefix) $this->prefix = $this->get_prefix();
     if(!$this->date_created) $this->date_created = date("Y-m-d H:i:s");
     $this->date_modified = date("Y-m-d H:i:s");
+    if($this->columns['content']) $this->content =  CmsTextFilter::filter("before_save", $this->content);
+    if($this->columns['terms_and_conditions']) $this->terms_and_conditions =  CmsTextFilter::filter("before_save", $this->terms_and_conditions);
   }
   
   public function get_prefix($test=false){
