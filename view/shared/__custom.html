@@ -5,7 +5,9 @@ $custom_form->form->value = $form_primval;
 ?>
 <div class='clearfix form_and_content_container'>
   <h3><?=$custom_form_model->title?></h3>
+  <div class='form_content_block clearfix'>
   <?=CmsTextFilter::filter("before_output", $custom_form_model->content)?>
+  </div>
   <div class='form_container clearfix'>
     <?$previous_group = $form_group = false;?>
     <form action="" method="post" class='waxform' enctype="multipart/form-data">
