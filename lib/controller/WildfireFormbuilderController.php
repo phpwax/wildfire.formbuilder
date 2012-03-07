@@ -50,10 +50,11 @@ class WildfireFormbuilderController extends WaxController{
       if($this->bot_check()) $this->redirect_to($custom_form->redirect_to_after_save."?s=bot");
 
       if($saved = $this->custom_form->save()){
-        if(($to = $custom_form->email_notification) && ($sender = new $this->email_notification_class)){
-          $func = $this->email_notification_func;
-          if($this->email_subject && $this->dev_emails) $sender->$func($saved, $to, $this->email_subject, $this->dev_emails); 
-          elseif($this->email_subject) $sender->$func($saved, $to, $this->email_subject); 
+        if(($to = $custom_form->email_notification) && ($this->email_notification_class)){
+          $sender = new $this->email_notification_class;
+          $func = "send_".$this->email_notification_func;
+          if($this->email_subject && $this->dev_emails) $sender->$func($saved, $to, $this->email_subject, $this->dev_emails);
+          elseif($this->email_subject) $sender->$func($saved, $to, $this->email_subject);
           else $sender->$func($saved, $to);
         }
         $this->redirect_to($custom_form->redirect_to_after_save."?s=".$saved->primval);
