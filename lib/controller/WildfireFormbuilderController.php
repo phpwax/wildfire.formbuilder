@@ -42,7 +42,7 @@ class WildfireFormbuilderController extends WaxController{
             foreach($c as $v) $choices[trim($v)] = trim($v);
           }
           $previous_group = $group;
-          $options = array('widget'=>$field->field_type, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices, 'fg'=>$field->field_group, 'extra_class'=>$field->extra_class);          
+          $options = array('widget'=>$field->field_type, 'original_title'=>$field->original_title, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices, 'fg'=>$field->field_group, 'extra_class'=>$field->extra_class);          
           $obj->define($field->column_name, "CharField", $options);
         }
       });
