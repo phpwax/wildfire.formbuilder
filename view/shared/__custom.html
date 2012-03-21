@@ -31,7 +31,7 @@ $custom_form->form->value = $form_primval;
             <h4><?=$field->label?></h4>
           <?else:?>
             <span class='clearfix wax_form_field <?=$fclass?> <?=$fclass.$col?> wax-field-<?=($field->bound_data->extra_class)?> <?=$fclass?>-<?=($field->bound_data->extra_class)?> wax-field-required-<?=$field->bound_data->required?>'>
-              <?=$field->render(array('placeholder'=>strip_tags($field->label)));?>
+              <?=$field->render(array('placeholder'=>strip_tags($field->bound_data->original_title)));?>
             </span>
           <?endif?>
           <?if(($i+1) == $counter):?>
