@@ -30,7 +30,7 @@ class WildfireFormbuilderController extends WaxController{
         foreach($form->fields->scope("live")->all() as $field){
           $obj->custom_form_fields[] = $field;
           $choices = array();
-          if($field->required) $field->title .= " *";
+          if($field->required) $field->title .= " <sup>*</sup>";
           if($field->subtext) $field->title .= "<br><span class='subtext'>".$field->subtext."</span>";
           //set the group
           $group = $field->field_group;
