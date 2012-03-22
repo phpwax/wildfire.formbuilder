@@ -33,7 +33,7 @@ class WildfireCustomField extends WaxModel{
   }
   //
   public function get_column_name($test=false){
-    if(!$test) $test = substr(Inflections::underscore($this->title),0,8);
+    if(!$test) $test = substr(Inflections::underscore(str_replace("/","_",$this->title)),0,8);
     $model = new WildfireCustomField;
     if($model->filter("column_name", $test)->first()) return $this->get_column_name($test.rand(1000,9999));
     else return $test;
