@@ -8,7 +8,7 @@ class WildfireCustomForm extends WaxModel{
     $this->define("terms_and_conditions", "TextField", array('widget'=>"TinymceTextareaInput"));
     $this->define("redirect_to_after_save", "CharField");
     $this->define("email_notification", "CharField", array('label'=>'Send email to'));
-
+    $this->define("email_subject", "CharField");
     $this->define("prefix", "CharField", array('editable'=>false, 'unique'=>true));
 
     $this->define("date_created", "DateTimeField", array('editable'=>false, 'scaffold'=>true));
