@@ -18,6 +18,7 @@ class WildfireCustomField extends WaxModel{
     $this->define("column_name", "CharField", array('editable'=>false));
     $this->define("form", "ForeignKey", array('target_model'=>'WildfireCustomForm', 'scaffold'=>true));
     $this->define("order", "IntegerField", array('widget'=>'HiddenInput'));
+    parent::setup();
   }
   
   public function scope_live(){
