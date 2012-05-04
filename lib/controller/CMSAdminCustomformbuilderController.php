@@ -28,6 +28,22 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
     });
   }
 
+  public function import_has_many(){
+    $this->use_layout = false;
+    $this->use_view = false;
+    $field = new WildfireCustomField;
+    $fields = $field->all();
+    echo "Found ".$fields->count()." fields\n";
+    foreach($fields as $f){
+      if($f->wildfire_custom_form_id){
+        $form = new WildfireCustomForm($f->wildfire_custom_form_id);
+        $form->fields = $f;
+        $form->save();
+        echo "  Form: ".$f->wildfire_custom_form_id."\n  Field: ".$f->primval;
+      }else echo "Field: ".$f->primval." has no form attached.\n";
+    }
+  }
+
 }
 
 ?>
