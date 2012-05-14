@@ -15,7 +15,9 @@ class WildfireCustomField extends WaxModel{
     $this->define("crm_group_name", "CharField", array('editable'=>false));
     $this->define("extra_class", "CharField", array('widget'=>'SelectInput', 'choices'=>array(''=>'Normal', 'small'=>'small', 'large'=>'large')));
     
-    $this->define("column_name", "CharField", array('editable'=>false));
+    $this->define("column_name", "CharField", array('editable'=>false,'unique'=>true));
+    $this->define("crm_column_name", "CharField", array('editable'=>false));
+
     $this->define("form", "ManyToManyField", array('target_model'=>'WildfireCustomForm', 'scaffold'=>true));
     $this->define("order", "IntegerField", array('widget'=>'HiddenInput'));
     parent::setup();
@@ -36,6 +38,9 @@ class WildfireCustomField extends WaxModel{
   //
   public function get_column_name($test=false){
     if(!$test) $test = substr(Inflections::underscore(str_replace("/","_",$this->title)),0,8);
+    $model = new WildfireCustomField;
+    if($model->filter("column_name", $test)->first()) return $this->get_column_name($test.rand(1000,9999));
+    else return $test;
     return $test;
   }
   

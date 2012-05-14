@@ -15,7 +15,7 @@
         <span class='cf checkbox'><input type='checkbox' id="<?=$name?>_<?=$row->primval?>" name='joins[<?=$name?>][<?=$row->primval?>][<?=$row->primary_key?>]' value="<?=$row->primval?>" checked="checked"></span>
         <input type="hidden" name="fields[<?=$i?>][primval]" value="<?=$row->primval?>">
         <span class='cf title'><?=$mini_form->title->render(array('placeholder'=>'title'));?></span>
-        <?if($row->columns['column_name'][1]['editable']):?><span class='cf column_name'><?=$mini_form->column_name->render(array('placeholder'=>'column name'));?></span><?endif?>
+        <?if($row->columns['crm_column_name'][1]['editable']):?><span class='cf column_name'><?=$mini_form->crm_column_name->render(array('placeholder'=>'crm column name'));?></span><?endif?>
         <span class='cf field_type'><?=$mini_form->field_type->render();?></span>
         <span class='cf subtext'><?=$mini_form->subtext->render(array('placeholder'=>'sub text'));?></span>
         <span class='cf field_group'><?=$mini_form->field_group->render(array('placeholder'=>'group'));?></span>
@@ -37,7 +37,7 @@
       <div class='clearfix join-option cloneme'>
         <?=$mini_form->order->render();?>
         <span class='cf title'><?=$mini_form->title->render(array('placeholder'=>'title'));?></span>
-        <?if($row->columns['column_name'][1]['editable']):?><span class='cf column_name'><?=$mini_form->column_name->render(array('placeholder'=>'column name'));?></span><?endif?>
+        <?if($row->columns['crm_column_name'][1]['editable']):?><span class='cf column_name'><?=$mini_form->crm_column_name->render(array('placeholder'=>'crm column name'));?></span><?endif?>
         <span class='cf field_type'><?=$mini_form->field_type->render();?></span>
         <span class='cf subtext'><?=$mini_form->subtext->render(array('placeholder'=>'sub text'));?></span>
         <span class='cf field_group'><?=$mini_form->field_group->render(array('placeholder'=>'group'));?></span>
