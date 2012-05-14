@@ -15,7 +15,7 @@ class WildfireCustomField extends WaxModel{
     $this->define("crm_group_name", "CharField", array('editable'=>false));
     $this->define("extra_class", "CharField", array('widget'=>'SelectInput', 'choices'=>array(''=>'Normal', 'small'=>'small', 'large'=>'large')));
     
-    $this->define("column_name", "CharField", array('editable'=>false,'unique'=>true));
+    $this->define("column_name", "CharField", array('editable'=>false));
     $this->define("crm_column_name", "CharField", array('editable'=>false));
 
     $this->define("form", "ManyToManyField", array('target_model'=>'WildfireCustomForm', 'scaffold'=>true));
