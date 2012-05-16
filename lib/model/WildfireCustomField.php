@@ -18,6 +18,8 @@ class WildfireCustomField extends WaxModel{
     $this->define("column_name", "CharField", array('editable'=>false));
     $this->define("crm_column_name", "CharField", array('editable'=>false));
 
+    $this->define("crm_default_value","CharField",array('editable'=>false));
+
     $this->define("form", "ManyToManyField", array('target_model'=>'WildfireCustomForm', 'scaffold'=>true));
     $this->define("order", "IntegerField", array('widget'=>'HiddenInput'));
     parent::setup();
