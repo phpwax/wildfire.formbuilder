@@ -56,9 +56,8 @@ class WildfireFormbuilderController extends WaxController{
         if(($to = $custom_form->email_notification) && ($this->email_notification_class)){
           $sender = new $this->email_notification_class;
           $func = "send_".$this->email_notification_func;
-          if(is_array(Session::get('campaign_data'))) {
-            $saved = array_merge($saved, Session::get("campaign_data"));
-          }
+          $session_data = (array) unserialize( Session::get('campaign_data'));
+          $saved = array_merge($saved, $session_data);
           if($this->custom_form_model->email_subject) $sender->$func($saved, $to, $this->from_address, $this->custom_form_model->email_subject);
           elseif($this->email_subject && $this->dev_emails) $sender->$func($saved, $to, $this->from_address, $this->email_subject, $this->dev_emails);
           elseif($this->email_subject) $sender->$func($saved, $to, $this->from_address, $this->email_subject);
