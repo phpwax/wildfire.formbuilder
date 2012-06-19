@@ -1,6 +1,5 @@
 <?
-if(!$custom_form_model || ($fields = $custom_form_model->fields)) return;
-$custom_form_fields = $fields->scope("live")->all();
+if($custom_form_model) $custom_form_fields = $custom_form_model->fields->scope("live")->all();
 $counter = $custom_form_fields->count();
 $custom_form->form->value = $form_primval;
 ?>
