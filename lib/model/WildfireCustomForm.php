@@ -10,6 +10,7 @@ class WildfireCustomForm extends WaxModel{
     $this->define("email_notification", "CharField", array('label'=>'Send email to'));
     $this->define("email_subject", "CharField");
     $this->define("prefix", "CharField", array('editable'=>false, 'unique'=>true));
+    $this->define("table_name", "CharField", array('editable'=>false, 'unique'=>true));
 
     $this->define("date_created", "DateTimeField", array('editable'=>false, 'scaffold'=>true));
     $this->define("date_modified", "DateTimeField", array('editable'=>false));
@@ -20,6 +21,7 @@ class WildfireCustomForm extends WaxModel{
   public function before_save(){
     if(!$this->title) $this->title = "FORM NAME";
     if(!$this->prefix) $this->prefix = $this->get_prefix();
+    if(!$this->table_name) $this->table_name = "wdf_".$this->prefix;
     if(!$this->date_created) $this->date_created = date("Y-m-d H:i:s");
     $this->date_modified = date("Y-m-d H:i:s");
     if($this->columns['content']) $this->content =  CmsTextFilter::filter("before_save", $this->content);
@@ -27,7 +29,7 @@ class WildfireCustomForm extends WaxModel{
   }
   
   public function get_prefix($test=false){
-    if(!$test) $test = substr(Inflections::underscore($this->title),0,5);
+    if(!$test) $test = Inflections::underscore($this->title);
     $model = new WildfireCustomForm;
     if($model->filter("prefix", $test)->first()) return $this->get_prefix($test.rand(1000,9999));
     else return $test;

@@ -16,14 +16,15 @@ class WildfireFormbuilderController extends WaxController{
   public function __custom(){
     $fm_class = $this->form_model_class;
     $f_class = $this->form_class;
-    if($this->form_primval && ($custom_form = new $f_class($this->form_primval))){
+
+    if($this->form_primval && ($custom_form = $fm_class::$form_model = new $f_class($this->form_primval))){
       $fm_class::$form = $this->custom_form_model = $custom_form; //copy to this var so we can access the content / t&cs etc
-      
  
       //clear and create the event to hook in to the model setup
       if(!$_POST) WaxEvent::clear($fm_class.".setup");
       WaxEvent::add($fm_class.".setup", function(){
         $obj = WaxEvent::data(); //the model
+        $obj->table = $obj::$form_model->table_name;        
         $form = $obj::$form;
         $previous_group = $group = false;
         //now we loop over the fields and add them to the model
