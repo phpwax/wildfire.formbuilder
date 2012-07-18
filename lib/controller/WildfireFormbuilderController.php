@@ -1,6 +1,6 @@
 <?
 class WildfireFormbuilderController extends WaxController{
-  
+
   public $custom_form = false;
   public $custom_form_model = false;
   public $form_class = "WildfireCustomForm";
@@ -18,8 +18,8 @@ class WildfireFormbuilderController extends WaxController{
     $f_class = $this->form_class;
     if($this->form_primval && ($custom_form = new $f_class($this->form_primval))){
       $fm_class::$form = $this->custom_form_model = $custom_form; //copy to this var so we can access the content / t&cs etc
-      
- 
+
+
       //clear and create the event to hook in to the model setup
       if(!$_POST) WaxEvent::clear($fm_class.".setup");
       WaxEvent::add($fm_class.".setup", function(){
@@ -35,18 +35,19 @@ class WildfireFormbuilderController extends WaxController{
           if($field->subtext) $field->title .= "<br><span class='subtext'>".$field->subtext."</span>";
           //set the group
           $group = $field->field_group;
-          
-          
+
+
           if($field->choices){
             $c = explode("\n", $field->choices);
             foreach($c as $v) $choices[trim($v)] = trim($v);
           }
           $previous_group = $group;
-          $options = array('widget'=>$field->field_type, 'original_title'=>$field->original_title, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices, 'fg'=>$field->field_group, 'extra_class'=>$field->extra_class);          
-          $obj->define($field->column_name, "CharField", $options);
+          $options = array('widget'=>$field->field_type, 'original_title'=>$field->original_title, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices, 'fg'=>$field->field_group, 'extra_class'=>$field->extra_class);
+          if($field->field_type == "TextareaInput") $obj->define($field->column_name, "TextField", $options);
+          else $obj->define($field->column_name, "CharField", $options);
         }
       });
-      
+
       $db = new $fm_class;
       $this->custom_form = new WaxForm($db);
       //bot check functionality
@@ -72,6 +73,6 @@ class WildfireFormbuilderController extends WaxController{
     if(($v = array_shift($posted)) && $v) return true;
     else return false;
   }
-  
+
 }
 ?>
