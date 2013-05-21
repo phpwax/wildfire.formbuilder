@@ -110,7 +110,7 @@ class WildfireFormbuilderController extends WaxController{
   }
 
   protected function bot_check(){
-    $posted = Request::param('check-in');
+    $posted = array_merge((array)Request::param('check-in'), (array) Request::param('when') );
     if($posted && ($v = array_shift($posted)) && $v) return true;
     else return false;
   }

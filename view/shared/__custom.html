@@ -14,7 +14,7 @@ $custom_form->form->value = $form_primval;
       <?#this field is used as a bot check on the form and will be hidden via js?>
       <fieldset class='check-in'>
         <label for='check-in'>Check in</label>
-        <input type="text" class='input_field text_field' name='check-in[<?=date("Y-m-d")?>]' id="check-in" value="">
+        <input type="text" class='input_field text_field' name='when[<?=time()?>]' id="check-in" value="">
       </fieldset>
       <?$i=0?>
       <?foreach($custom_form as $col=>$field):?>
