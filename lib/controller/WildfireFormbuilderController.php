@@ -43,7 +43,8 @@ class WildfireFormbuilderController extends WaxController{
           }
           $previous_group = $group;
           $options = array('widget'=>$field->field_type, 'original_title'=>$field->original_title, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices, 'fg'=>$field->field_group, 'extra_class'=>$field->extra_class);          
-          $obj->define($field->column_name, "CharField", $options);
+          if($field->field_type == "TextareaInput") $obj->define($field->column_name, "TextField", $options);
+          else $obj->define($field->column_name, "CharField", $options);
         }
       });
       
