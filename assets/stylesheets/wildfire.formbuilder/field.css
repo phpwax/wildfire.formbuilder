@@ -1,3 +1,6 @@
+#custom_form_existing_field ul{
+  width:100%;
+}
 .existing_field span.cf{
   width:15%;
   margin-left:1%;
