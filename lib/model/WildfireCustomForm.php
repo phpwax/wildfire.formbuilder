@@ -2,13 +2,13 @@
 class WildfireCustomForm extends WaxModel{
 
   public function setup(){
-    $this->define("title", "CharField", array('required'=>true, 'scaffold'=>true, 'primary_group'=>1, 'group'=>'details'));
-    $this->define("content", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'details'));
-    $this->define("type", "CharField", array('group'=>'details') );
-    $this->define("terms_and_conditions", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'details'));
-    $this->define("redirect_to_after_save", array('group'=>'details') );
-    $this->define("email_notification", "CharField", array('label'=>'Send email to', 'group'=>'details'));
-    $this->define("email_subject", "CharField", array('group'=>'details'));
+    $this->define("title", "CharField", array('required'=>true, 'scaffold'=>true, 'group'=>'content', 'primary_group'=>1));
+    $this->define("content", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'content', 'primary_group'=>1));
+    $this->define("type", "CharField");
+    $this->define("terms_and_conditions", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'Terms'));
+    $this->define("redirect_to_after_save", "CharField");
+    $this->define("email_notification", "CharField", array('label'=>'Send email to'));
+    $this->define("email_subject", "CharField");
     $this->define("prefix", "CharField", array('editable'=>false, 'unique'=>true));
     $this->define("table_name", "CharField", array('editable'=>false, 'unique'=>true));
 
