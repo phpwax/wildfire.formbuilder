@@ -11,20 +11,17 @@ jQuery(document).ready(function(){
   var cloned = jQuery(".cloneme").html(),
       start = jQuery("#add_custom_form_field").siblings("ul.existing_field").find("li").length
       ;
-  jQuery("#add_custom_form_field").attr("data-counter", start).bind("click", function(e){    
-    e.preventDefault();    
+  jQuery("#add_custom_form_field").attr("data-counter", start).bind("click", function(e){
+    e.preventDefault();
     var c = cloned
         field_counter = parseInt(jQuery("#add_custom_form_field").attr("data-counter"));
         ;
     c = c.replace(/%s\[/gi, "new_field["+field_counter+"][").replace(/%s_/gi, "new_field_"+field_counter+"_");
     jQuery(".existing_field").append("<li class='clearfix join-option join-yes'>"+c+"</li>");
     jQuery("#add_custom_form_field").attr("data-counter", field_counter+1);
-
     dropdown_check();
     return false;
   });
-  
+
   dropdown_check();
-  
-  
 });
