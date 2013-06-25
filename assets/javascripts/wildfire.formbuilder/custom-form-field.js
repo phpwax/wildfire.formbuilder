@@ -19,6 +19,7 @@ jQuery(document).ready(function(){
     c = c.replace(/%s\[/gi, "new_field["+field_counter+"][").replace(/%s_/gi, "new_field_"+field_counter+"_");
     jQuery(".existing_field").append("<li class='clearfix join-option join-yes'>"+c+"</li>");
     jQuery("#add_custom_form_field").attr("data-counter", field_counter+1);
+    jQuery(".existing_field").find(".unstyled_select").removeClass(".unstyled_select").select2({width:"resolve",allowClear:true});
     dropdown_check();
     return false;
   });
