@@ -3,7 +3,7 @@ class WildfireCustomForm extends WaxModel{
 
   public function setup(){
     $this->define("title", "CharField", array('required'=>true, 'scaffold'=>true, 'group'=>'content', 'primary_group'=>1));
-    $this->define("content", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'content', 'primary_group'=>1));
+    $this->define("content", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'content', 'primary_group'=>1, 'label'=>false));
     $this->define("type", "CharField");
     $this->define("terms_and_conditions", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'Terms'));
     $this->define("redirect_to_after_save", "CharField");
@@ -14,7 +14,7 @@ class WildfireCustomForm extends WaxModel{
 
     $this->define("date_created", "DateTimeField", array('editable'=>false, 'scaffold'=>true));
     $this->define("date_modified", "DateTimeField", array('editable'=>false));
-    $this->define("pages", "ManyToManyField", array('target_model'=>CONTENT_MODEL, 'group'=>'relationships', 'primary_group'=>1));
+    $this->define("pages", "ManyToManyField", array('target_model'=>CONTENT_MODEL, 'group'=>'relationships'));
     $this->define("fields", "ManyToManyField", array('scaffold'=>true, 'target_model'=>'WildfireCustomField', 'group'=>'Fields', 'editable'=>true, 'primary_group'=>1));
   }
 
