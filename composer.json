@@ -1,0 +1,21 @@
+{
+    "name": "phpwax/wildfire.formbuilder",
+    "authors": [
+        {
+            "name": "Charles Marshall",
+            "email": "charles@oneblackbear.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    },
+    "license": "MIT",
+    "autoload": {
+      "classmap": [
+        "lib/", "resources/"
+      ],
+      "files": ["ini.php"]
+    }
+
+}
