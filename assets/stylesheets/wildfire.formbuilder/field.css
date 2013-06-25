@@ -1,12 +1,21 @@
 #custom_form_existing_field ul{
   width:100%;
+  min-height: 300px;
+  max-height: 900px;
 }
+
+  #custom_form_existing_field div.field{
+    width:100%;
+  }
 .existing_field span.cf{
   width:15%;
   margin-left:1%;
   float:left;
   margin-bottom:5px;
   display:block;
+}
+.existing_field span.cf .select2-container{
+  width:100% !important;
 }
 .existing_field span.extra_class{width:8%;}
 .existing_field li{
