@@ -1,14 +1,16 @@
 <?
+CMSApplication::register_module("customformbuilder", array("display_name"=>"Form Builder", "link"=>"/admin/customformbuilder/"));
+CMSApplication::register_asset("wildfire", "js", "wildfire.formbuilder");
+CMSApplication::register_asset("wildfire", "css", "wildfire.formbuilder");
 
 AutoLoader::register_view_path("plugin", __DIR__."/view/");
 AutoLoader::register_controller_path("plugin", __DIR__."/lib/controller/");
 AutoLoader::register_controller_path("plugin", __DIR__."/resources/app/controller/");
 AutoLoader::$plugin_array[] = array("name"=>"wildfire.formbuilder","dir"=>__DIR__);
-CMSApplication::register_asset("wildfire", "js", "wildfire.formbuilder");
-CMSApplication::register_asset("wildfire", "css", "wildfire.formbuilder");
 
 
-CMSApplication::register_module("customformbuilder", array('plugin_name'=>'wildfire.formbuilder', 'assets_for_cms'=>true, "display_name"=>"Form Builder", "link"=>"/admin/customformbuilder/"));
+
+
 
 if(!defined("CONTENT_MODEL")){
   $con = new ApplicationController(false, false);
