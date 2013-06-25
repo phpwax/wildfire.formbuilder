@@ -6,7 +6,7 @@ AutoLoader::register_controller_path("plugin", __DIR__."/resources/app/controlle
 AutoLoader::$plugin_array[] = array("name"=>"wildfire.formbuilder","dir"=>__DIR__);
 
 
-CMSApplication::register_module("customformbuilder", array('plugin_name'=>'wildfire.formbuilder', 'assets_for_cms'=>true, "display_name"=>"Form Builder", "link"=>"/admin/customformbuilder/", 'split'=>true));
+CMSApplication::register_module("customformbuilder", array('plugin_name'=>'wildfire.formbuilder', 'assets_for_cms'=>true, "display_name"=>"Form Builder", "link"=>"/admin/customformbuilder/"));
 
 if(!defined("CONTENT_MODEL")){
   $con = new ApplicationController(false, false);
