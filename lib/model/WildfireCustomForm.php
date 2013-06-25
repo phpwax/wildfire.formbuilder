@@ -2,22 +2,22 @@
 class WildfireCustomForm extends WaxModel{
 
   public function setup(){
-    $this->define("title", "CharField", array('required'=>true, 'scaffold'=>true));
-    $this->define("content", "TextField", array('widget'=>"TinymceTextareaInput"));
-    $this->define("type", "CharField");
-    $this->define("terms_and_conditions", "TextField", array('widget'=>"TinymceTextareaInput"));
-    $this->define("redirect_to_after_save", "CharField");
-    $this->define("email_notification", "CharField", array('label'=>'Send email to'));
-    $this->define("email_subject", "CharField");
+    $this->define("title", "CharField", array('required'=>true, 'scaffold'=>true, 'primary_group'=>1, 'group'=>'details'));
+    $this->define("content", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'details'));
+    $this->define("type", "CharField", array('group'=>'details') );
+    $this->define("terms_and_conditions", "TextField", array('widget'=>"TinymceTextareaInput", 'group'=>'details'));
+    $this->define("redirect_to_after_save", array('group'=>'details') );
+    $this->define("email_notification", "CharField", array('label'=>'Send email to', 'group'=>'details'));
+    $this->define("email_subject", "CharField", array('group'=>'details'));
     $this->define("prefix", "CharField", array('editable'=>false, 'unique'=>true));
     $this->define("table_name", "CharField", array('editable'=>false, 'unique'=>true));
 
     $this->define("date_created", "DateTimeField", array('editable'=>false, 'scaffold'=>true));
     $this->define("date_modified", "DateTimeField", array('editable'=>false));
-    $this->define("pages", "ManyToManyField", array('target_model'=>CONTENT_MODEL, 'group'=>'relationships'));
-    $this->define("fields", "ManyToManyField", array('scaffold'=>true, 'target_model'=>'WildfireCustomField', 'group'=>'Fields', 'editable'=>true));
+    $this->define("pages", "ManyToManyField", array('target_model'=>CONTENT_MODEL, 'group'=>'relationships', 'primary_group'=>1));
+    $this->define("fields", "ManyToManyField", array('scaffold'=>true, 'target_model'=>'WildfireCustomField', 'group'=>'Fields', 'editable'=>true, 'primary_group'=>1));
   }
-  
+
   public function before_save(){
     if(!$this->title) $this->title = "FORM NAME";
     if(!$this->prefix) $this->prefix = $this->get_prefix();
@@ -27,7 +27,7 @@ class WildfireCustomForm extends WaxModel{
     if($this->columns['content']) $this->content =  CmsTextFilter::filter("before_save", $this->content);
     if($this->columns['terms_and_conditions']) $this->terms_and_conditions =  CmsTextFilter::filter("before_save", $this->terms_and_conditions);
   }
-  
+
   public function get_prefix($test=false){
     if(!$test) $test = Inflections::underscore(Inflections::to_url(str_replace("/", "_", $this->title)));
     $model = new WildfireCustomForm;
