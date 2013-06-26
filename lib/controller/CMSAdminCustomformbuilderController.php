@@ -5,6 +5,10 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
   public $model_class = 'WildfireCustomForm';
   public $display_name = "Form Builder";
   public $dashboard = false;
+  public $operation_actions = array(
+                                                  'edit'=>array('action'=>'edit', 'name'=>'<b>✎</b>Edit %s'),
+                                                  'download'=>array('action'=>'download', 'name'=>'<b></b>Download')
+                                                );
 
   protected function events(){
     parent::events();
@@ -42,6 +46,22 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
         echo "  Form: ".$f->wildfire_custom_form_id."\n  Field: ".$f->primval;
       }else echo "Field: ".$f->primval." has no form attached.\n";
     }
+  }
+
+
+  public function download(){
+    $this->use_format = "csv";
+    $class = $this->model_class;
+    $model = new $class(Request::param('id'));
+    $base = new WaxModel;
+    $base->table = $model->table_name;
+    $this->map['id'] = 'ID';
+    if(($data = $base->all()) && $data->count() ){
+      $this->results = $data->rowset;
+      foreach($model->fields as $f) $this->map[$f->column_name] = $f->title;
+      $this->map['date_submitted'] = 'Date Submitted';
+    }else $this->redirect_to("/".$this->controller."/");
+
   }
 
 }
