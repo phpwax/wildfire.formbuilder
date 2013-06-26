@@ -61,7 +61,10 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
       foreach($model->fields as $f) $this->map[$f->column_name] = $f->title;
       $this->map['date_submitted'] = 'Date Submitted';
     }else $this->redirect_to("/".$this->controller."/");
-
+    header("Content-type: text/csv");
+    header("Content-Disposition: attachment; filename=".$model->title."-".date("Y-m-d").".csv");
+    header("Pragma: no-cache");
+    header("Expires: 0");
   }
 
 }
