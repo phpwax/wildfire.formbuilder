@@ -42,7 +42,9 @@ $custom_form->form->value = $form_primval;
           <?$i++;?>
         <?endif?>
       <?endforeach?>
-      <fieldset class='clearfix submit'><input type="submit" class='submit_button button submit_input' value='Submit'></fieldset>
+      <fieldset class='clearfix submit'>
+        <input type="submit" class='submit_button button submit_input' value='<?=$custom_form_model->submit_text?$custom_form_model->submit_text:'Submit'?>'>
+      </fieldset>
     </form>
   </div>
  <?if($custom_form_model->terms_and_conditions):?>

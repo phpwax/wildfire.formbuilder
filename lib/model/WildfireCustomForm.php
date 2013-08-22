@@ -9,6 +9,7 @@ class WildfireCustomForm extends WaxModel{
     $this->define("redirect_to_after_save", "CharField");
     $this->define("email_notification", "CharField", array('label'=>'Send email to'));
     $this->define("email_subject", "CharField");
+    $this->define("submit_text","CharField");
     $this->define("prefix", "CharField", array('editable'=>false, 'unique'=>true));
     $this->define("table_name", "CharField", array('editable'=>false, 'unique'=>true));
 
