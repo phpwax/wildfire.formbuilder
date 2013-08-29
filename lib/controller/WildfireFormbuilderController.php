@@ -38,7 +38,7 @@ class WildfireFormbuilderController extends WaxController{
           foreach($c as $v) $choices[trim($v)] = trim($v);
         }
         $previous_group = $group;
-        $options = array('widget'=>$field->field_type, 'original_title'=>$field->original_title, 'label'=>$field->title, 'required'=>$field->required, 'choices'=>$choices, 'fg'=>$field->field_group, 'extra_class'=>$field->extra_class);
+        $options = array('widget'=>$field->field_type, 'original_title'=>$field->original_title, 'label'=>$field->title, 'required'=>$field->required?true:false, 'choices'=>$choices, 'fg'=>$field->field_group, 'extra_class'=>$field->extra_class);
         if($field->field_type == "TextareaInput") $obj->define($field->column_name, "TextField", $options);
         else if($field->field_type == "FileInput") $obj->define($field->column_name, "FileField", $options);
         else $obj->define($field->column_name, "CharField", $options);
