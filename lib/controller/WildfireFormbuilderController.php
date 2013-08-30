@@ -74,6 +74,7 @@ class WildfireFormbuilderController extends WaxController{
           elseif($this->email_subject) $sender->$func($saved, $to, $this->from_address, $this->email_subject);
           else $sender->$func($saved, $to, $this->from_address);
         }
+        WaxEvent::run($fm_class.".after_save");
         $this->redirect_to($custom_form->redirect_to_after_save."?s=".$saved->primval, false);
       }
     }
