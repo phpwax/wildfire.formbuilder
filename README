@@ -26,3 +26,10 @@ Form builder:
       - required field
       
 email setup uses a notification class, submission is the email view which is empty by default
+
+
+include this in your js:
+
+  jQuery(document).ready(function(){
+    jQuery("form .check-in").hide();
+  });
