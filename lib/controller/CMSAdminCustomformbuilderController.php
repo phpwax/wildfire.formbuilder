@@ -3,6 +3,7 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
 
   public $module_name = "customformbuilder";
   public $model_class = 'WildfireCustomForm';
+  public $field_class = 'WildfireCustomField';
   public $display_name = "Form Builder";
   public $dashboard = false;
   public $operation_actions = array(
@@ -17,14 +18,14 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
 	    $saved = $obj->model;
 	    //handle new fields
 	    foreach(Request::param('new_field') as $field){
-	      $model = new WildfireCustomField;
+	      $model = new $this->field_class;
         if($s = $model->update_attributes($field)) $saved->fields = $s;
 	    }
 	    $joins = Request::param('joins');
 	    $fjoins = $joins['fields'];
 	    //handle existing joins
 	    foreach(Request::param('fields') as $field){
-	      $model = new WildfireCustomField($field['primval']);
+	      $model = new $this->field_class($field['primval']);
 	      unset($field['primval']);
 	      if($fjoins[$model->primval][$model->primary_key] && ($s = $model->update_attributes($field))) $saved->fields = $s;
 	      else $model->update_attributes(array($saved->table."_".$saved->primary_key=>0));
@@ -35,12 +36,12 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
   public function import_has_many(){
     $this->use_layout = false;
     $this->use_view = false;
-    $field = new WildfireCustomField;
+    $field = new $this->field_class;
     $fields = $field->all();
     echo "Found ".$fields->count()." fields\n";
     foreach($fields as $f){
       if($f->wildfire_custom_form_id){
-        $form = new WildfireCustomForm($f->wildfire_custom_form_id);
+        $form = new $this->model_class($f->wildfire_custom_form_id);
         $form->fields = $f;
         $form->save();
         echo "  Form: ".$f->wildfire_custom_form_id."\n  Field: ".$f->primval;
