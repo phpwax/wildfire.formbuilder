@@ -18,14 +18,14 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
 	    $saved = $obj->model;
 	    //handle new fields
 	    foreach(Request::param('new_field') as $field){
-	      $model = new $this->field_class;
+	      $model = new $obj->field_class;
         if($s = $model->update_attributes($field)) $saved->fields = $s;
 	    }
 	    $joins = Request::param('joins');
 	    $fjoins = $joins['fields'];
 	    //handle existing joins
 	    foreach(Request::param('fields') as $field){
-	      $model = new $this->field_class($field['primval']);
+	      $model = new $obj->field_class($field['primval']);
 	      unset($field['primval']);
 	      if($fjoins[$model->primval][$model->primary_key] && ($s = $model->update_attributes($field))) $saved->fields = $s;
 	      else $model->update_attributes(array($saved->table."_".$saved->primary_key=>0));
