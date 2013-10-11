@@ -29,7 +29,7 @@ class WildfireCustomForm extends WaxModel{
   }
   
   public function get_prefix($test=false){
-    if(!$test) $test = Inflections::underscore(Inflections::to_url(str_replace("/", "_", $this->title)));
+    if(!$test) $test = substr(Inflections::underscore(Inflections::to_url(str_replace("/", "_", $this->title))),0,40);
     $model = new WildfireCustomForm;
     if($model->filter("prefix", $test)->first()) return $this->get_prefix($test.rand(1000,9999));
     else return $test;
