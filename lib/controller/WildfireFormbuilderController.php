@@ -86,8 +86,10 @@ class WildfireFormbuilderController extends WaxController{
     $custom_form = new $f_class;
     $custom_form = $custom_form->all();
     foreach($custom_form as $c_form){
-      if(!$c_form->table_name) $c_form->prefix = $c_form->table_name = "";
-      $c_form->save();
+      if(!$c_form->table_name){
+        $c_form->prefix = $c_form->table_name = "";
+        $c_form->save();
+      }
     }
     $custom_form = false;
 
