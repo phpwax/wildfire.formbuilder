@@ -1,10 +1,10 @@
 <?
 class WildfireDynamicForm extends WaxModel{
-  
+
   public static $form;
   public static $form_model;
   public static $custom_form_fields=array();
-  
+
   public function setup(){
      parent::setup();
      $this->define("form", "IntegerField", array('widget'=>'HiddenInput'));
@@ -14,7 +14,7 @@ class WildfireDynamicForm extends WaxModel{
 
   public function before_save(){
     parent::before_save();
-    $this->date_submitted = date("Y-m-d H:i:s");
-  }  
+    if(!$this->date_submitted) $this->date_submitted = date("Y-m-d H:i:s");
+  }
 }
 ?>
