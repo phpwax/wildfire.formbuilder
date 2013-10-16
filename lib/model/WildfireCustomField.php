@@ -39,11 +39,16 @@ class WildfireCustomField extends WaxModel{
   }
   //
   public function get_column_name($test=false){
-    if(!$test) $test = str_replace(":", "", substr(Inflections::underscore(str_replace("/","_",$this->title)),0,8));
+    if(!$test) $test = self::tidy_string($this->title);
     $model = new WildfireCustomField;
     if($model->filter("column_name", $test)->first()) return $this->get_column_name($test.rand(1000,9999));
     else return $test;
     return $test;
+  }
+
+  public static function tidy_string($string, $length=8){
+    $clean = str_replace(array(":",",",";",".", "/", "_", " "), "", strip_tags($string) );
+    return substr(Inflections::underscore($clean),0,$length);
   }
 
 }
