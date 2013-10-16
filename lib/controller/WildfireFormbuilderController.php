@@ -105,6 +105,7 @@ class WildfireFormbuilderController extends WaxController{
         foreach($d_form_temp->columns as $el=>$info){
           if($info[0] != "AutoField") $d_form_temp->$el = $d_form->$el;
         }
+        $d_form_temp->date_submitted = $d_form->row['date_submitted'];
         $d_form_temp->save();
       }
       $page++;
