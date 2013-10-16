@@ -95,18 +95,21 @@ class WildfireFormbuilderController extends WaxController{
     ini_set("max_execution_time", 0);
     $page = 1;
     $per_page = 100;
-    while(($dynamic_form = $dynamic_form->page($page,$per_page)) && $page <= $dynamic_form->total_pages){
+    while(($dynamic_form = $dynamic_form->order("id DESC")->page($page,$per_page)) && $page <= $dynamic_form->total_pages){
       foreach($dynamic_form as $d_form){
-        print_r("Working on: ".$d_form->id."\n");
+
         WaxEvent::clear($fm_class.".setup");
         $fm_class::$form = $fm_class::$form_model = new $f_class($d_form->form);
         $this->events($fm_class);
         $d_form_temp = new $fm_class;
+        echo "Working on: ".$d_form->id."\n".$d_form_temp->table."\n";
         foreach($d_form_temp->columns as $el=>$info){
           if($info[0] != "AutoField") $d_form_temp->$el = $d_form->$el;
         }
+
         $d_form_temp->date_submitted = $d_form->row['date_submitted'];
-        $d_form_temp->save();
+        $d = $d_form_temp->save();
+        echo "saved: $d->primval\n\n";
       }
       $page++;
     }
