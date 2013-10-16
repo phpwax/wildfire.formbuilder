@@ -17,7 +17,7 @@ class WildfireCustomForm extends WaxModel{
     $this->define("pages", "ManyToManyField", array('target_model'=>CONTENT_MODEL, 'group'=>'relationships'));
     $this->define("fields", "ManyToManyField", array('scaffold'=>true, 'target_model'=>'WildfireCustomField', 'group'=>'Fields', 'editable'=>true));
   }
-  
+
   public function before_save(){
     if(!$this->title) $this->title = "FORM NAME";
     if(!$this->prefix) $this->prefix = $this->get_prefix();
@@ -27,9 +27,9 @@ class WildfireCustomForm extends WaxModel{
     if($this->columns['content']) $this->content =  CmsTextFilter::filter("before_save", $this->content);
     if($this->columns['terms_and_conditions']) $this->terms_and_conditions =  CmsTextFilter::filter("before_save", $this->terms_and_conditions);
   }
-  
+
   public function get_prefix($test=false){
-    if(!$test) $test = substr(Inflections::underscore(Inflections::to_url(str_replace("/", "_", $this->title))),0,40);
+    if(!$test) $test = substr(Inflections::underscore(Inflections::to_url(str_replace("/", "_", $this->title))),0,20);
     $model = new WildfireCustomForm;
     if($model->filter("prefix", $test)->first()) return $this->get_prefix($test.rand(1000,9999));
     else return $test;
