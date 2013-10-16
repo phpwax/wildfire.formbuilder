@@ -39,8 +39,8 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
         $form = new WildfireCustomForm($f->wildfire_custom_form_id);
         $form->fields = $f;
         $form->save();
-        echo "  Form: ".$f->wildfire_custom_form_id."\n  Field: ".$f->primval;
-      }else echo "Field: ".$f->primval." has no form attached.\n";
+        echo "  Form: ".$f->wildfire_custom_form_id."<br>\n  Field: ".$f->primval."<br>\n";
+      }else echo "Field: ".$f->primval." has no form attached.<br>\n";
     }
   }
 
