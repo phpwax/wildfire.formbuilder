@@ -37,3 +37,6 @@
 .existing_field .input_field {
   font-size:93%;
 }
+.existing_field label {
+  margin-top:0;
+}
