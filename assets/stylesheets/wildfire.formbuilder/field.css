@@ -6,6 +6,7 @@
 
   #custom_form_existing_field div.field{
     width:100%;
+    font-size:100%;
   }
 .existing_field span.cf{
   width:15%;
