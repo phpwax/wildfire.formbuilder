@@ -34,3 +34,6 @@
 .existing_field span.choices_forced, .existing_field span.choices_forced label{display:block;}
 .existing_field span.choices_forced label{margin-left:0;margin-bottom:5px;}
 .existing_field span.cf input, .existing_field span.cf select{width:94%;}
+.existing_field .input_field {
+  font-size:93%;
+}
