@@ -47,7 +47,7 @@ class WildfireCustomField extends WaxModel{
   }
 
   public static function tidy_string($string, $length=8){
-    $clean = str_replace(array(":",",",";",".", "/", "_", " "), "", strip_tags($string) );
+    $clean = str_replace(array(":",",",";",".","!","?","/", "_", " "), "", strip_tags($string) );
     return substr(Inflections::underscore($clean),0,$length);
   }
 
