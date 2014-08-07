@@ -41,6 +41,11 @@ class WildfireFormbuilderController extends WaxController{
         $previous_group = $group;
         $options = array('widget'=>$field->field_type, 'original_title'=>$field->original_title, 'label'=>$field->title, 'required'=>$field->required?true:false, 'choices'=>$choices, 'fg'=>$field->field_group, 'extra_class'=>$field->extra_class);
         if($field->field_type == "CheckboxInput" && $field->required) $options["validations"] = array("checked");
+        if($field->field_type == "FileInput") {
+          $options["identifier"] = "url";
+          $options["file_root"] = "public/files/$form->table_name/";
+          $options["url_root"] = "files/$form->table_name/";
+        }
 
         if($field->field_type == "TextareaInput") $obj->define($field->column_name, "TextField", $options);
         else if($field->field_type == "FileInput") $obj->define($field->column_name, "FileField", $options);
