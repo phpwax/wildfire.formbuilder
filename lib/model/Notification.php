@@ -2,7 +2,8 @@
 class Notification extends WaxEmail{
 
 
-  public function submission($data, $to, $from, $subject="Notification of form submission", $dev_emails=array()){
+  public function submission($data, $to, $from, $subject=false, $dev_emails=array()){
+    if(!$subject) $subject="Notification of form submission";
     $this->from = $from;
     $all = explode(",", str_replace(";", ",", $to));
     $this->add_to_address(array_shift($all));
