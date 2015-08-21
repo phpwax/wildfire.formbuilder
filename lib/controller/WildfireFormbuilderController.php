@@ -49,6 +49,7 @@ class WildfireFormbuilderController extends WaxController{
 
         if($field->field_type == "TextareaInput") $obj->define($field->column_name, "TextField", $options);
         else if($field->field_type == "FileInput") $obj->define($field->column_name, "FileField", $options);
+        else if($field->field_type == "EmailInput") $obj->define($field->column_name, "EmailField", $options);
         else $obj->define($field->column_name, "CharField", $options);
       }
       $obj->syncdb();
