@@ -59,7 +59,7 @@ class CMSAdminCustomformbuilderController extends AdminComponent {
     $this->map['id'] = 'ID';
     if(($data = $base->all()) && $data->count() ){
       $this->results = $data->rowset;
-      foreach($model->fields as $f) $this->map[$f->column_name] = $f->title;
+      foreach($model->fields()->order('`wildfire_custom_field`.order ASC')->all() as $f) $this->map[$f->column_name] = $f->title;
       $this->map['date_submitted'] = 'Date Submitted';
     }else $this->redirect_to("/".$this->controller."/");
     header("Content-type: text/csv");
